@@ -4,7 +4,7 @@ This demo highlights the usage of `imfusion-sdk` for a variety of medical imagin
 The `imfusion-sdk` package contains Python bindings for a subset of the ImFusion C++ SDK.
 It is available for the currently supported Python versions. You can check the currently available Python wheels on [PyPI](https://pypi.org/project/imfusion-sdk/).
 This repository assumes you're on python 3.11 (Otherwise the pinned versions in `requirements.txt` might not be available).
-We recommend using a official python interpreter. The latest stable releases can be found on [python.org](https://www.python.org/downloads/release/).
+We recommend using a official python interpreter. The latest stable releases can be found on [python.org](https://www.python.org/downloads/).
 To run the notebooks in this demo you need to follow the two steps detailed below.
 
 ### 1. Set up a python environment
