@@ -1,0 +1,42 @@
+Version: 4.0
+Type: NeuralNetwork
+PredictionType: CLASSIFICATION
+PredictionOutput: IMAGE
+Name: Overfitting Segmentation
+Description: Dummy model for the public demo material
+
+# This selects which framework runs the prediction, can be ['pytorch', 'pyonnxruntime', 'pyopenvino'].
+# If `imfusion` includes the TorchPlugin and OnnxPlugin then `torch` and `onnx` are also available.
+Engine: pyonnxruntime
+
+# Path to the saved inference model relative to this file.
+ModelFile: model.onnx
+
+ForceCPU: false # Option for forcing execution on CPU. Default: false.
+Verbose: false  # Option for enabling additional logging during execution. Default: false.
+
+# Defines the processing pipeline before invoking the model.
+# Entries are specified as the names of imfusion.machinelearning.Operation subclasses (but without the `Operation` suffix)
+PreProcessing:
+- MakeFloat:	# Converts the image voxels to float type
+- NormalizePercentile:	# Normalizes the voxel values to [0, 1] while taking into account only min to max percentile range
+    clamp_values: '0'
+    ignore_zeros: '0'
+    max_percentile: '0.99'
+    min_percentile: '0.01'
+    processing_policy: '0'
+- Resample:	# Resamples the input to the desired target resolution
+    resolution: 3.0 3.0 3.0
+- BakeTransformation: {}	# Applies the affine transformation of the input such that the results transformation is the identity
+
+# Defines a sampling strategy to break down large volumes into chunks that the model can handle without going OOM.
+Sampling:
+- DimensionDivisor: 8	# Pads the image to the next multiple of this number. It is used to make sure that UNet downsampling and upsampling paths produce images of the same size
+- MaxSizeSubdivision: 64	# Splits the image in the smallest number of patches of size `MaxSizeSubdivision`. It is used keep VRAM usage under control. Default = -1 to process the entire image at once.
+- PixelsOverlap: 16	# Controls the size in pixels of the overlap regions
+- RecombineWeighted: true	# Accurate prediction recombination method based on cosine decay. If false, predictions are averaged in the overlapping regions
+
+# Defines processing that is applied to the output of the model
+PostProcessing:
+- ArgMax: {}	# Converts prediction to a (in this case binary) labelmap
+- ResampleToInput: {}	# Resamples the prediction to the geometry of the image given in MachineLearningModel.predict
