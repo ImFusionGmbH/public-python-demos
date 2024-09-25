@@ -6,7 +6,7 @@ import imfusion as imf
 import matplotlib
 import numpy as np
 from matplotlib import pyplot as plt
-
+from typing import Tuple
 
 def unzip_folder(path_to_zip_folder: str):
     # if not path_to_zip_folder.endswith('.zip'):
@@ -78,3 +78,23 @@ def mpr_plot(
         fig.colorbar(matplotlib.cm.ScalarMappable(norm, cmap), cax=cbar_ax, orientation='vertical')
     fig.patch.set_facecolor('gray')
     plt.show()
+
+
+def display_images(*images: Tuple[imf.SharedImage, ...], figsize=(10, 3), vmin=0, vmax=5):
+    num_images = len(images)
+    fig, axes = plt.subplots(1, num_images, figsize=figsize)   
+    if num_images == 1:
+        axes = [axes]
+
+    for i, image in enumerate(images):
+        image_arr = np.array(image).squeeze()
+        axes[i].imshow(image_arr, vmin=vmin, vmax=vmax, cmap='gray')
+        if num_images == 2:
+            axes[i].set_title("Input Image" if i != num_images - 1 else "Output Image")
+        else:
+            axes[i].set_title(f"Input Image #{i + 1}" if i != num_images - 1 else "Output Image") 
+        axes[i].axis('off')
+    
+    fig.colorbar(axes[-1].images[0], ax=axes, orientation='vertical', pad=0.1)
+    plt.show()
+    
