@@ -49,7 +49,7 @@ class MyAlgorithm(imf.Algorithm):
             arr[arr >= self.threshold] = 1
 
             out = imf.SharedImage(arr).astype(np.uint8)
-            out.matrix = image.matrix
+            out.world_to_image_matrix = image.world_to_image_matrix
             out.spacing = image.spacing
             out.modality = imf.Data.Modality.LABEL
 
