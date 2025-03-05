@@ -1,4 +1,4 @@
-Version: 4.0
+Version: 5.0
 Type: NeuralNetwork
 PredictionType: CLASSIFICATION
 PredictionOutput: IMAGE
@@ -35,6 +35,7 @@ Sampling:
 - MaxSizeSubdivision: 64	# Splits the image in the smallest number of patches of size `MaxSizeSubdivision`. It is used keep VRAM usage under control. Default = -1 to process the entire image at once.
 - PixelsOverlap: 16	# Controls the size in pixels of the overlap regions
 - RecombineWeighted: true	# Accurate prediction recombination method based on cosine decay. If false, predictions are averaged in the overlapping regions
+- PaddingMode: Clamp  # [Mirror, Clamp, Zero]. Default is Mirror.
 
 # Defines processing that is applied to the output of the model
 PostProcessing:

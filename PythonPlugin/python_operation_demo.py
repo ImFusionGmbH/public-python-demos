@@ -48,7 +48,7 @@ class PyNormalizeOperation(ml.Operation):
             image_norm = (img - img.min()) / (img.max() - img.min())
 
             out = SharedImage(image_norm)
-            out.matrix = si.matrix
+            out.world_to_image_matrix = si.world_to_image_matrix
             out.spacing = si.spacing
             item[name] = SharedImageSet(out)
             return item

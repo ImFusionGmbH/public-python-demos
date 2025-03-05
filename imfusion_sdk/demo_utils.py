@@ -57,10 +57,11 @@ def mpr_plot(
     cmap = "gray"
     norm = matplotlib.colors.Normalize(vmin=vmin, vmax=vmax)
     if image.modality == imf.Data.Modality.NM:
-        cmap = "magma"
+        cmap = "inferno"
     if image.modality == imf.Data.Modality.LABEL:
         cmap, norm = _label_mappable()
     fig, plots = plt.subplots(1, 3, figsize=(12, 8))
+    fig.patch.set_alpha(0.0)
     for mpr, label_mpr, ax in zip(mprs[::-1], label_mprs[::-1], plots):
         ax.imshow(mpr, cmap=cmap, vmin=vmin, vmax=vmax,
                   interpolation="nearest" if image.modality == imf.Data.Modality.LABEL else "antialiased")
