@@ -48,9 +48,9 @@ def mpr_plot(
     label_mprs = [None] * 3
     for i, size in enumerate(arr.shape[:-1]):
         mpr_selection = tuple(slice_selection[j] if j == i else slice(None, None, None) for j in range(3))
-        mprs[i] = arr[*mpr_selection]
+        mprs[i] = arr[mpr_selection]
         if got_label:
-            label_mprs[i] = labels[*mpr_selection]
+            label_mprs[i] = labels[mpr_selection]
 
     vmin = vmin if vmin is not None else image.min()[0]
     vmax = vmax if vmax is not None else image.max()[0]
