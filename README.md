@@ -11,5 +11,5 @@ These come in two flavors:
   - `python_algorithm_demo` shows how you can write your own algorithm and Python and call it from the ImFusion Suite
   - `python_operation_demo` is similar to the one above but shows how to create an ML Operation, which is often used as part of data pipelines, instead.
 
-You find more details about our Python integrations in our [documentation](https://docs.imfusion.com/python/README.html).
+You find more details about our Python integrations in our [documentation](https://docs.imfusion.com/python/index.html).
 For more information and news regarding our company, please visit our [website](https://www.imfusion.com/).
