@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<propertyfile version="1.1" name="">
+	<property name="Marker">
+		<param name="markerType">1</param>
+		<param name="dictionary">0</param>
+		<param name="markerLength">10</param>
+		<param name="gridSizeX">9</param>
+		<param name="gridSizeY">7</param>
+		<param name="cellSize">30</param>
+		<param name="startingMarker">0</param>
+		<param name="minAdjacentMarkers">2</param>
+		<property name="DetectorParameters">
+			<param name="adaptiveThreshWinSizeMin">3</param>
+			<param name="adaptiveThreshWinSizeMax">23</param>
+			<param name="adaptiveThreshWinSizeStep">10</param>
+			<param name="adaptiveThreshConstant">7</param>
+			<param name="minMarkerPerimeterRate">0.03</param>
+			<param name="maxMarkerPerimeterRate">4</param>
+			<param name="polygonalApproxAccuracyRate">0.03</param>
+			<param name="minCornerDistanceRate">0.05</param>
+			<param name="minDistanceToBorder">3</param>
+			<param name="minMarkerDistanceRate">0.05</param>
+			<param name="cornerRefinementMethod">1</param>
+			<param name="cornerRefinementWinSize">5</param>
+			<param name="cornerRefinementMaxIterations">30</param>
+			<param name="cornerRefinementMinAccuracy">0.1</param>
+			<param name="markerBorderBits">1</param>
+			<param name="perspectiveRemovePixelPerCell">4</param>
+			<param name="perspectiveRemoveIgnoredMarginPerCell">0.13</param>
+			<param name="maxErroneousBitsInBorderRate">0.35</param>
+			<param name="minOtsuStdDev">5</param>
+			<param name="errorCorrectionRate">0.6</param>
+		</property>
+	</property>
+</propertyfile>
