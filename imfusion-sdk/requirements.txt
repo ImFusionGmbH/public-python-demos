@@ -1,5 +1,6 @@
-imfusion-sdk==0.9.1
+imfusion-sdk==0.10.0
 matplotlib==3.9.0
 jupyter==1.0.0
 ipywidgets==8.1.5
 onnxruntime==1.19.2
+# optionally for notebook 3: torch --index-url https://download.pytorch.org/whl/cpu
