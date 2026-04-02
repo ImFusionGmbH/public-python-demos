@@ -16,3 +16,11 @@
 /imfusion_sdk/data/tumor_mask_dilated_rtstruct.dcm
 /imfusion_sdk/workshop/data/tumor_mask_dilated_rtstruct.dcm
 /.idea/vcs.xml
+/imfusion-sdk/data/cropped_pet.imf
+/imfusion-sdk/data/pred_segmentation.imf
+/imfusion-sdk/data/resampled_ct.imf
+/imfusion-sdk/data/resampled_pet.imf
+/imfusion-sdk/data/thresholded_pet.imf
+/imfusion-sdk/data/tumor_mask_dilated_rtstruct.dcm
+/imfusion-sdk/data/tumor_mask_seg.dcm
+/imfusion-sdk/data/pet-ct-rtstruct/
