@@ -4,60 +4,39 @@ To add this Algorithm to the ImFusion Suite you need to open this file in the Su
 You can either drag and drop it into the Suite window or use the file import dialog ("Open" Button in the top bar)
 To run the Algorithm you will then need to select an image in the Data widget and open the controller for this Algorithm from the right-click context menu.
 It will be located under `Python` -> `MonaiSobel`.
+The Algorithm is registered through the `imfusion.algorithm.register` decorator.
 You can find more information about writing your own Algorithms in Python at https://docs.imfusion.com/python/algorithms.html.
 """
 
-from pathlib import Path
+from enum import Enum
 
 import imfusion as imf
-import numpy as np
 import monai
+from imfusion.algorithm import Input, ParamBool, ParamChoice, ParamInt
 
 
-class MonaiSobel(imf.Algorithm):
-    """Example algorithm that thresholds an image."""
+class PaddingMode(Enum):
+    ZEROS = "zeros"
+    REFLECT = "reflect"
+    REPLICATE = "replicate"
+    CIRCULAR = "circular"
 
-    def __init__(self, imageset: imf.SharedImageSet):
-        super().__init__()
-        self.imageset = imageset
-        self.imageset_out = imf.SharedImageSet()
-        self.padding_options = imf.Properties.EnumStringParam(
-            value="zeros",
-            admitted_values={"zeros", "reflect", "replicate", "circular"},
-        )
 
-        # We can add parameters to the algorithm that auto-generate GUI elements in the Suite
-        # The GUI element created depends on the type of the value we pass in
-        self.add_param('kernel_size', 3,
-                       attributes='min: 1, max: 15, withSlider: True, suffix: px'
-        )
-        self.add_param("normalize_kernel", True)
-        self.add_param("padding", self.padding_options)
+@imf.algorithm.register(display_name="MonaiSobel")
+class MonaiSobel:
+    """Example algorithm that applies MONAI Sobel gradients to an image."""
 
-    @classmethod
-    def convert_input(cls, data: imf.DataList) -> imf.DataList:
-        if len(data) != 1:
-            raise imf.IncompatibleError("Requires one dataset")
-        images = [i for i in data if isinstance(i, imf.SharedImageSet)]
-        if len(images) != 1:
-            raise imf.IncompatibleError("Only works on images")
-        return images
+    image = Input(imf.SharedImageSet)
+    kernel_size = ParamInt("Kernel Size", default=3, min=3, max=15, step=2, with_slider=True, unit="px")
+    normalize_kernel = ParamBool("Normalize Kernel", default=True)
+    padding = ParamChoice("Padding", default=PaddingMode.ZEROS)
 
-    def compute(self) -> None:
-
+    def __call__(self) -> imf.SharedImageSet:
         sobel = monai.transforms.SobelGradients(
             self.kernel_size,
             normalize_kernels=self.normalize_kernel,
             padding_mode=self.padding.value,
         )
 
-        filtered = sobel(self.imageset[0].astype(float).torch())
-        self.imageset_out = imf.SharedImageSet.from_torch(filtered[None, ...], get_metadata_from=self.imageset)
-
-    def output(self):
-        return [self.imageset_out]
-
-
-# The Algorithm needs to be manually registered in the Suite
-imf.unregister_algorithm('Python;MonaiSobel')  # Remove potential previous versions of this algo
-imf.register_algorithm("Python.MonaiSobel", 'Python;MonaiSobel', MyAlgorithm)
+        filtered = sobel(self.image[0].astype(float).torch())
+        return imf.SharedImageSet.from_torch(filtered[None, ...], get_metadata_from=self.image)

@@ -40,7 +40,7 @@ class PyNormalizeOperation(ml.Operation):
                 continue
 
             if self.verbose:
-                imfusion.log_info(f"Processing field '{name}'")
+                imfusion.log.info(f"Processing field '{name}'")
 
             si = element.content[0]
             img = np.array(si, copy=False)

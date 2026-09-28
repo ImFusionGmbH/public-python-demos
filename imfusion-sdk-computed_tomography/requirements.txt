@@ -1,3 +1,4 @@
 --extra-index-url https://pypi.imfusion.com/simple
-imfusion-sdk[computed_tomography]==0.11.2
+imfusion-sdk-computed_tomography==0.13.0
+jupyter==1.0.0
 scipy==1.16.2
