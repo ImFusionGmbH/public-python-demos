@@ -1,0 +1,8 @@
+--extra-index-url https://pypi.imfusion.com/simple
+imfusion-sdk-registration==0.13.0
+imfusion-sdk-imagemath==0.13.0
+imfusion-sdk-machinelearning==0.13.0
+imfusion-sdk-dicom==0.13.0
+matplotlib==3.9.0
+jupyter==1.0.0
+ipywidgets==8.1.5

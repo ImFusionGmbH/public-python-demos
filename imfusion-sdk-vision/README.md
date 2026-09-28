@@ -1,13 +1,13 @@
-# Vision demos with `imfusion-sdk`
+# Vision Demos with `imfusion-sdk-vision`
 
-This folder contains Jupyter notebooks demonstrating core computer vision concepts using the `imfusion-sdk` Python package.
+This folder contains Jupyter notebooks demonstrating core computer vision concepts using the `imfusion-sdk-vision` Python package.
 
-**Note:** The `vision` module is only available in the Starter" and "Professional" offerings of our SDK.
-Visit our [webshop](https://imfusion.com/products-overview/software-development-kit/vision-and-endoscopy/) for more details.
+**Note:** The `imfusion-sdk-vision` package is available in the "Starter" and "Professional" SDK offerings.
+Visit our [SDK pricing page](https://imfusion.com/sdk-pricing/) for more details.
 
-### Setup
+## Setup
 
-1. Please follow the steps described in [imfusion-sdk README](../imfusion-sdk/README.md) for the initial environment setup.
+1. Please follow the steps described in [imfusion-sdk/README.md](../imfusion-sdk/README.md) for the initial environment setup.
 
 2. Install dependencies for this demo:
 
@@ -18,8 +18,8 @@ Visit our [webshop](https://imfusion.com/products-overview/software-development-
 3. Start Jupyter in this folder:
 
 ```bash
-(demo-env-vision) cd imfusion_sdk_vision/
-(demo-env-vision) jupyter notebook
+(demo-env) cd imfusion-sdk-vision/
+(demo-env) jupyter notebook
 ```
 
 ## Acknowledgements
